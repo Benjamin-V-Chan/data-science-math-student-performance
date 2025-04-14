@@ -16,3 +16,14 @@ def train_model(X_train, y_train):
     model = RandomForestRegressor(random_state=42)
     model.fit(X_train, y_train)
     return model
+
+def main():
+    input_path = os.path.join('..', 'outputs', 'model_data.csv')
+    model_output = os.path.join('..', 'outputs', 'model.pkl')
+    df = load_data(input_path)
+    X_train, X_test, y_train, y_test = split_data(df)
+    model = train_model(X_train, y_train)
+    joblib.dump((model, X_test, y_test), model_output)
+
+if __name__ == '__main__':
+    main()

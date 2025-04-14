@@ -80,3 +80,29 @@ python scripts/04_model_building.py
 python scripts/05_model_evaluation.py
 ```
 
+---
+
+## Requirements
+
+The project requires the following Python packages:
+
+- pandas
+- numpy
+- matplotlib
+- seaborn
+- scikit-learn
+- joblib
+
+Install them using:
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Acknowledgments
+
+dataset name: Math-Students Performance Data  
+dataset author:  
+Adil Shamim  
+dataset source: https://www.kaggle.com/datasets/adilshamim8/math-students

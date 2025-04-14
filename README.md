@@ -40,3 +40,43 @@ project-root/
 ├── requirements.txt
 └── README.md
 ```
+
+---
+
+## Usage
+
+### 1. Setup the Project:
+
+Clone the repository.  
+Ensure you have Python installed.  
+Install required dependencies using the requirements.txt file:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Run Preprocessing Script
+```bash
+python scripts/01_data_preprocessing.py
+```
+
+### 3. Run Exploratory Data Analysis
+```bash
+python scripts/02_exploratory_data_analysis.py
+```
+
+### 4. Run Feature Engineering
+```bash
+python scripts/03_feature_engineering.py
+```
+
+### 5. Train the Model
+```bash
+python scripts/04_model_building.py
+```
+
+### 6. Evaluate the Model
+```bash
+python scripts/05_model_evaluation.py
+```
+

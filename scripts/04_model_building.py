@@ -1,10 +1,18 @@
-# Import libraries (pandas, os, sklearn, joblib)
-# Define a function to load the engineered data from outputs/model_data.csv.
-# Define a function to split the dataset into features (X) and target (y), then into training and test sets.
-# Define a function to build and train a regression model (e.g., RandomForestRegressor).
-# In main():
-#   - Build file paths.
-#   - Load data and perform train-test split.
-#   - Train the regression model.
-#   - Save the trained model (and test data) to outputs/model.pkl for later evaluation.
-# Execute main() if __name__ equals '__main__'.
+import os
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+import joblib
+
+def load_data(filepath):
+    return pd.read_csv(filepath)
+
+def split_data(df):
+    X = df.drop('G3', axis=1)
+    y = df['G3']
+    return train_test_split(X, y, test_size=0.2, random_state=42)
+
+def train_model(X_train, y_train):
+    model = RandomForestRegressor(random_state=42)
+    model.fit(X_train, y_train)
+    return model

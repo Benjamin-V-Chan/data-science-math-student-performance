@@ -1,12 +1,21 @@
-# Import necessary libraries (pandas, numpy, os)
-# Define a function to load the CSV dataset from the data/ folder.
-# Define a function to preprocess the data:
-#   - Drop duplicate rows.
-#   - Fill or impute missing values (using forward fill in this case).
-#   - Encode categorical variables (using one-hot encoding, dropping first dummy).
-# Define a main function:
-#   - Build the file paths for input (data/) and output (outputs/cleaned_data.csv).
-#   - Load the dataset.
-#   - Preprocess the dataset.
-#   - Save the cleaned data to the outputs/ folder.
-# Execute the main function if the script is run as __main__.
+import pandas as pd
+import os
+
+def load_data(filepath):
+    return pd.read_csv(filepath)
+
+def preprocess_data(df):
+    df.drop_duplicates(inplace=True)
+    df.fillna(method='ffill', inplace=True)
+    cat_cols = df.select_dtypes(include=['object']).columns
+    return pd.get_dummies(df, columns=cat_cols, drop_first=True)
+
+def main():
+    input_path = os.path.join('..', 'data', 'Math-Students.csv')
+    output_path = os.path.join('..', 'outputs', 'cleaned_data.csv')
+    df = load_data(input_path)
+    df_clean = preprocess_data(df)
+    df_clean.to_csv(output_path, index=False)
+
+if __name__ == '__main__':
+    main()

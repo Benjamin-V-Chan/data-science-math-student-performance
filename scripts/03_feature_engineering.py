@@ -1,12 +1,22 @@
-# Import libraries (pandas, os)
-# Define a function to load the cleaned data.
-# Define a function for feature engineering:
-#   - Create a new feature (e.g., average of G1 and G2 if available).
-#   - Optionally, create additional binary features (e.g., high family support).
-#   - Define the target variable as G3 and separate it from features.
-# In main():
-#   - Build file paths.
-#   - Load cleaned data.
-#   - Perform feature engineering.
-#   - Save the engineered data to outputs/model_data.csv.
-# Execute main() if __name__ equals '__main__'.
+import os
+import pandas as pd
+
+def load_data(filepath):
+    return pd.read_csv(filepath)
+
+def feature_engineer(df):
+    if 'G1' in df.columns and 'G2' in df.columns:
+        df['avg_G1_G2'] = (df['G1'] + df['G2']) / 2
+    if 'famrel' in df.columns:
+        df['high_family_support'] = (df['famrel'] > 3).astype(int)
+    return df
+
+def main():
+    input_path = os.path.join('..', 'outputs', 'cleaned_data.csv')
+    output_path = os.path.join('..', 'outputs', 'model_data.csv')
+    df = load_data(input_path)
+    df_fe = feature_engineer(df)
+    df_fe.to_csv(output_path, index=False)
+
+if __name__ == '__main__':
+    main()
